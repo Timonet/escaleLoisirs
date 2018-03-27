@@ -1,0 +1,818 @@
+body {
+    font-family: 'Didact Gothic', sans-serif;
+    color: #434343;
+    line-height: 1.5rem;
+    letter-spacing: 0.025rem
+}
+
+/* ajustement de la taille maximale du conteneur */
+.container {
+    max-width: 1366px;
+}
+
+/* ajout d'une bordure au-dessus des images du caroussel */
+.carousel_border {
+    margin-bottom: 1.5rem;
+    border-top: 30px solid #AAAAAA;
+    border-bottom: 15px solid #EFC236;
+}
+
+/* ajout d'une bordure entre le menu à gauche et la partie principale à droite */
+.aside_menu {
+    position: relative;
+    border-right: 2px solid #7F7F7F;
+    padding: 0;
+}
+
+.div-search {
+    margin: 3rem auto 1rem auto;
+    max-width: 2.25rem;    
+}
+
+.search-form {
+    padding: 0 2rem;
+}
+
+
+/* retrait du padding auto */
+.principale {
+    padding: 0;
+}
+
+h1,
+h2 {
+    text-align: center;
+    color: #7F7F7F;
+    font-size: 1.85rem;
+    margin-top: 5rem;
+}
+
+h3 {
+    color: #7F7F7F;
+    font-size: 1.5rem;
+    margin: 2rem 0;    
+}
+
+.activites {
+    margin: 3rem 0 3rem 3rem;
+}
+
+.partenaires {
+    margin: 3rem;
+}
+
+.select-act {
+    margin: 0 0 2rem 1rem;
+}
+
+.logo {
+    margin-right: -25px;
+    padding: 4rem 2rem;
+}
+
+.list-group {
+    margin: 13.75rem 2rem 0;
+}
+
+.list-group-item {
+    font-size: 1.25rem;
+    text-align: center;
+    border: none;
+}
+
+.list-group a {
+    color: #7F7F7F;
+}
+
+/* hover menu principal */ 
+div .list-group a {
+    transition: all 2s;
+}
+
+div .list-group a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+}
+
+div .list-group a:after {
+    text-align: left;
+    content: '.';
+    margin: 0;
+    opacity: 0;
+}
+
+div .list-group a:hover {
+    color: #FFFFFF;
+    z-index: 1;
+}
+
+/* hover Menu Activités */
+@-webkit-keyframes fill {
+    0% {
+        width: 0%;
+        height: 8px;
+    }
+    50% {
+        width: 100%;
+        height: 8px;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        background: #518;
+    }
+}
+
+#menu_activite:hover:after {
+    z-index: -10;
+    animation: fill 0.5s forwards;
+    -webkit-animation: fill 0.5s forwards;
+    -moz-animation: fill 0.5s forwards;
+    opacity: 1;
+}
+
+/* hover Menu À Propos */
+@-webkit-keyframes fill2 {
+    0% {
+        width: 0%;
+        height: 8px;
+    }
+    50% {
+        width: 100%;
+        height: 8px;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        background: #518FCC;
+    }
+}
+
+#menu_propos:hover:after {
+    z-index: -10;
+    animation: fill2 0.5s forwards;
+    -webkit-animation: fill2 0.5s forwards;
+    -moz-animation: fill2 0.5s forwards;
+    opacity: 1;
+}
+
+/* hover Menu Contact */
+@-webkit-keyframes fill3 {
+    0% {
+        width: 0%;
+        height: 8px;
+    }
+    50% {
+        width: 100%;
+        height: 8px;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        background: #1C9191;
+    }
+}
+
+#menu_contact:hover:after {
+    z-index: -10;
+    animation: fill3 0.5s forwards;
+    -webkit-animation: fill3 0.5s forwards;
+    -moz-animation: fill3 0.5s forwards;
+    opacity: 1;
+}
+
+/* hover Menu Profil */
+@-webkit-keyframes fill4 {
+    0% {
+        width: 0%;
+        height: 5px;
+    }
+    50% {
+        width: 100%;
+        height: 5px;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        background: #FF8224;
+    }
+}
+
+#menu_profil:hover:after {
+    z-index: -10;
+    animation: fill4 0.5s forwards;
+    -webkit-animation: fill4 0.5s forwards;
+    -moz-animation: fill4 0.5s forwards;
+    opacity: 1;
+}
+
+/* hover Menu langue */
+@-webkit-keyframes fill5 {
+    0% {
+        width: 0%;
+        height: 5px;
+    }
+    50% {
+        width: 100%;
+        height: 5px;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        background: #EFC236;
+    }
+}
+
+#menu_langue:hover:after {
+    z-index: -10;
+    animation: fill5 0.5s forwards;
+    -webkit-animation: fill5 0.5s forwards;
+    -moz-animation: fill5 0.5s forwards;
+    opacity: 1;
+}
+
+.list-group-item:first-child {  
+    border-bottom: 3px solid #551188;
+}
+
+.list-group-item:nth-child(2) {
+    border-bottom: 3px solid #518FCC;
+}
+
+.list-group-item:nth-child(2):hover {
+    background-color: #518FCC;
+}
+
+.list-group-item:nth-child(3) {
+    border-bottom: 3px solid #1C9191;
+}
+
+.list-group-item:nth-child(4) {
+    border-bottom: 3px solid #FF8224;
+}
+
+.list-group-item:nth-child(5) {
+    border-bottom: 2px solid #EFC236;
+    border-radius: 0;
+}
+
+.coordonnees {
+    margin-top: 15rem;
+    text-align: center;
+    font-size: 0.8rem;
+    line-height: 1rem;
+}
+
+#btn-plus-activ {
+    float: right;
+    margin: 0 1rem 3rem;
+    background-color: #EFC236;
+    width: 293px;
+    border: none;
+    color: #000000;
+}
+
+.section-newsletter {
+    clear: right;
+    padding: 1.5rem 2rem;
+    background-color: #AAAAAA;
+}
+
+.infolettre {
+    margin: auto 0;
+}
+
+.btn.btn-primary {
+    background-color: #EFC236;
+    width: 125px;
+    border: none;
+    color: #000000;
+}
+
+.presentation {
+    padding: 2rem 4rem;
+    text-align: center;
+}
+
+.logo-img-top {
+    width: 100%;
+}
+
+/* hover sur image avec slide */
+.hovereffect {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+}
+
+.hovereffect .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    -webkit-transition: all 0.4s ease-in-out;
+    transition: all 0.4s ease-in-out;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    padding: 10px;
+    margin: 0;
+
+}
+
+/* particularités hover sur image avec slide verte */
+.headline-vert {
+    background-color: #1C9191;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.slide-vert {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #1C9191;
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+}
+
+.hovereffect:hover .slide-vert {
+    height: 85%;
+    width: 100%;
+}
+
+/* particularités hover sur image avec slide orange */
+.headline-orange {
+    background-color: #FF8224;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.slide-orange {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #FF8224;
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+}
+
+.hovereffect:hover .slide-orange {
+    height: 85%;
+    width: 100%;
+}
+
+/* particularités hover sur image avec slide bleue */
+.headline-bleu {
+    background-color: #518FCC;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.slide-bleu {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #518FCC;
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+}
+
+.hovereffect:hover .slide-bleu {
+    height: 85%;
+    width: 100%;
+}
+
+/* particularités hover sur image avec slide violet */
+.headline-violet {
+    background-color: #518;
+    color: #FFFFFF;
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+.slide-violet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #518;
+    overflow: hidden;
+    height: 0;
+    transition: .5s ease;
+}
+
+.hovereffect:hover .slide-violet {
+    height: 85%;
+    width: 100%;
+}
+
+
+.footer {
+    background-color: #7F7F7F;
+}
+
+.title-contact {
+    padding-left: 1rem;
+    font-size: 1.2rem;
+    color: #FFFFFF;
+    text-transform: uppercase;
+}
+
+.form-contact {
+    padding: 5rem 3rem; 
+}
+
+/* . */
+
+.modal-title {
+    color: #7F7F7F;
+    font-size: 1.5rem;
+    padding: inherit;
+}
+
+.modal-body .form-group {
+    padding: 5px 0;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.btn.btn-custom {
+    font-size: 17px;
+    margin: 2rem 0;
+    font-family:  'Didact Gothic', sans-serif;
+    color: #FFFFFF;
+	background-color: #EFC236;
+}
+.btn-custom:hover,
+.btn-custom:focus {
+    background-color: #1C9191;
+}
+
+.section-contact {
+    padding-left: 5rem;  
+}
+
+.section-contact .title-contact {
+    padding-top: 5rem; 
+}
+
+.coordonnees-footer{
+    padding: 2rem 0 0 1rem;
+}
+
+.logos-medias {
+    padding-left: 2rem;
+}
+
+.logo-medias {
+    max-width: 3.5rem;
+    padding-top: 1rem;
+    padding-right: 1rem;
+}
+.n-inscription {
+    margin: 2rem 0;
+    padding: 0 2rem;
+}
+
+.form-row legend {
+    font-size: 1.10rem;
+}
+
+.form-paiement {
+    padding: 1rem 0 2rem 0;
+}
+
+
+.btn-success {
+    margin: 2rem 0;
+}
+
+.modal-header {
+    background-image: url(../medias/logos/logo_escaleLoisirs.svg);
+    background-repeat: no-repeat;
+    background-size: 25%;
+    background-position: top 1rem left 50%;
+    text-align: center;
+}
+
+.modal-title {
+    margin-top: 4rem;
+    line-height: 1.75rem;
+    color: #1C9191;
+}
+
+.modal-body {
+    padding: 2rem 3rem 1rem 3rem;
+}
+
+.infos {
+    color: white;
+    font-size: 1.2rem;
+    text-align: left;
+    padding: 2rem 2rem 1rem 2rem;
+    margin: 0;
+}
+
+.link-inscrip {
+    color: white;
+    font-size: 20px;
+    text-align: right;
+
+}
+
+.link-inscrip:hover {
+    color: white;
+    font-size: 25px;
+    text-align: right;
+    text-decoration: none;
+}
+
+h5 {
+    color: #7F7F7F;
+}
+
+
+/*----------------------PROFIL MEMBRE----------------------*/
+.row__monprofil{
+    margin: 50px 30px 100px 30px;
+}
+
+.form__monprofil legend{
+    font-size: 1rem;
+}
+
+.h6__monprofil{
+    font-size: 1rem;
+    margin-bottom: 3rem;
+}
+
+.col_monprofil{
+border: 5px solid white;
+    background-color: #EDEDED;
+}
+
+.td__a__monprofil{
+    color: #434343;
+}
+
+.td__a__monprofil:hover{
+    color: #434343;
+}
+
+.a__monprofil{
+    color: #EFC236;
+    font-weight: bold;
+}
+.a__monprofil:hover{
+    color: #EFC236;
+}
+
+
+/*---------------ADMIN PAGES----------------------*/
+
+/*titre toutes pages admin*/
+.jumbotron__admin{
+    margin: 0;
+    color: #EFC236;
+    font-size: 50px;
+    text-transform: uppercase;
+    background-color: #7F7F7F;
+    border-radius: 0;
+}
+
+/*accueil administrateur*/
+.card-group__admin{
+    margin-top: 80px;
+}
+
+.card__admin{
+    margin: 20px;
+    border: none;
+}
+
+.card-body__admin--membres{
+    background-color: #1C9191;
+}
+
+.card-body__admin--animateurs{
+    background-color: #FF8224;
+}
+
+.card-body__admin--activites{
+    background-color: #EFC236;
+}
+
+.card-title__admin{
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.card-text__admin{
+    text-align: center;
+}
+
+.card-text__admin_link{
+    color: #434343;
+}
+
+.card-text__admin_link:hover{
+    text-decoration: underline;
+    color: #434343;
+}
+
+
+/*CSS pour espace main pages admin, 
+toutes infos centrées*/
+
+.row_main__admin{
+    margin:0;
+    padding: 0;
+    background-color: white;
+}
+
+.jumbotron__h2__admin{
+    margin-top: 50px;
+    padding: 10px;
+    color: #434343;
+    font-size: 25px;
+    /*text-transform: uppercase;*/
+    background-color: #EFC236;
+    border-radius: 0;
+}
+
+.h3__admin{
+    margin-top: 80px;
+    margin-bottom: 30px;
+}
+.h3__admin--mini{
+    font-size: 20px;
+    border-bottom: 1px solid grey;
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+
+.h3__admin--etroit{
+    font-size: 20px;
+    border-bottom: 1px solid grey;
+    margin-bottom: 20px;
+}
+
+.thead__admin--jaune{
+    background-color: #EFC236;
+}
+
+.table .thead__admin--minimal th{
+    padding: 0rem;
+    border-top: none;
+    border-bottom: 1px solid #7F7F7F;
+    font-weight: normal;
+}
+
+.tbody__admin--minimal td{
+    padding: 0.25rem;
+    border-bottom: 1px solid #EDEDED;
+}
+
+.thead__admin--gris{
+    background-color: #EDEDED;
+}
+
+.tbody__admin:hover{
+    background-color: #EDEDED;
+}
+
+.th__a__admin{
+    color: #434343;
+}
+
+.th__a__admin:hover{
+    color: #434343;
+    text-decoration: underline;
+}
+
+.main__admin{
+    margin-bottom: 100px;
+}
+
+.btn__admin{
+    border-radius: 0;
+    margin-top: 20px;
+    border: none;
+    text-transform: uppercase;
+}
+
+.btn__admin--publier{
+    background-color: #EFC236;
+    color: #434343;
+}
+
+.btn__admin--publier:hover{
+    background-color: #7F7F7F;
+    color:  #EFC236;
+}
+
+.p__admin--pieddepage{
+    margin-top: 20px;
+}
+
+.p__a__admin--pieddepage{
+    color: #434343;
+}
+
+.p__a__admin--pieddepage:hover{
+    color: #434343;
+    text-decoration: underline;
+}
+
+.btn__admin--nettoyer{
+    background-color: #7F7F7F;
+    color:  #EFC236;
+}
+
+.btn__admin--nettoyer:hover{
+    background-color: #FF8224;
+    color: #434343;
+}
+
+.btn__admin--eliminer{
+    background-color: #7F7F7F;
+    color: #EFC236;
+}
+
+.btn__admin--eliminer:hover{
+    background-color: red;
+    color: #434343;
+}
+
+.btn__admin--rechercher{
+    background-color: #EDEDED;
+    color: #434343;
+    border: none;
+    border-radius: 0;
+}
+
+.btn__admin--rechercher:hover{
+    background-color: #EDEDED;
+    color: #EFC236;
+}
+
+.form-control{
+    border-radius: 0;
+}
+
+.form-control:focus{
+    border: 1px solid #EFC236;
+    box-shadow: unset;
+    outline: none;
+}
+
+.form-inline__admin{
+    margin-bottom: 20px;
+}
+
+.h6__admin{
+    font-size: 1.25rem;
+    margin-bottom: 1.50rem;
+}
+
+.span__admin--alerte{
+    color: red;
+}
+
+.row__admin--fondsgris{
+    background-color: #EDEDED;
+    margin: 1rem;
+}
+

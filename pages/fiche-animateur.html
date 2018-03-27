@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<!--Projet web 1
+	Site web Centre Communautaire / escaleLoisirs
+	Page *fiche animateur(trice)* dans gestion pour administrateurs-->
+
+<head>
+  <meta charset="utf-8">
+  <title>escaleLoisirs / Gestion - fiche animateur(trice)</title>
+  <meta name="author" content="Sara Potau">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/shop-homepage.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
+</head>
+
+<body>
+	<div class="container-fluid">
+      <div class="row">
+
+      	<!-- Lateral gauche / Logo et menu pour pages gesion administrateurs-->
+        <aside class="col-lg-3 aside_menu">
+          <a href="#"><img class="card-img-top logo" src="../medias/logos/logo_escaleLoisirs.svg" alt="logo" max-width="200"></a>     
+          <div class="list-group">
+            <a href="#" class="list-group-item list-group-item__admin--sitepublique" id="menu_activite">Site publique</a>
+            <a href="#" class="list-group-item list-group-item__admin--membres" id="menu_propos">Membres</a>
+            <a href="#" class="list-group-item list-group-item__admin--animateurs" id="menu_contact">Animateurs</a>
+            <a href="#" class="list-group-item list-group-item__admin--activites" id="menu_profil">Activités</a>
+            <a href="#" class="list-group-item list-group-item__admin--webmestre" id="menu_langue">Contactez le web mestre</a>
+          </div>
+        </aside>
+
+		<!-- Header simple et contenu principal page-->
+		<main class="col-lg-9 principale main__admin" >
+			<h1 class="jumbotron jumbotron__admin">Gestion</h1>
+			<div class="row row_main__admin">
+				
+				<!--colonnes laterales pour centrer le contenu-->
+				<div class="col-lg-1"></div>
+
+				<div class="col-lg-10">
+					<h2 class= "jumbotron jumbotron__h2__admin">Fiche animateur(trice)</h2>
+					<h6 class="h6__admin">*Vous pouvez modifier la fiche sur cette même page.</h6>
+					
+					<!--fiche modifiable animateur(trice)-->
+					<form method="post" action="">
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<legend>Nom</legend>
+								<input required type="text" class="form-control" name="nom_animateur" placeholder="Nom animateur" value="">
+							</div>
+							<div class="form-group col-md-6">
+								<legend>Prénom</legend>
+								<input required type="text" class="form-control" name="prenom_animateur" placeholder="Prenom animateur" value="">
+							</div>
+						</div>
+
+				  		<div class="form-row">
+							<div class="form-group col-md-2">
+								<legend>N. rue</legend>
+								<input required type="text" class="form-control" name="n_rue_animateur" placeholder="N. rue" value="">
+							</div>
+							<div class="form-group col-md-4">
+								<legend>Rue</legend>
+								<input required type="text" class="form-control" name="rue_animateur" placeholder="Rue" value="">
+							</div>
+							<div class="form-group col-md-2">
+								<legend>Code Postal</legend>
+								<input required type="text" class="form-control" name="cp_animateur" placeholder="Code postal" value="">
+							</div>
+							<div class="form-group col-md-4">
+								<legend>Ville</legend>
+								<input required type="text" class="form-control" name="ville_animateur" placeholder="Ville" value="">
+							</div>
+					  	</div>
+
+					  	<div class="form-row">	
+							<div class="form-group col-md-6">
+								<legend>Téléphone</legend>
+								<input required type="text" class="form-control" name="tel_animateur" placeholder="Telephone" value="">
+								<!--manque input et small avec php... voir exemple en haut-->
+							</div>
+
+							<div class="form-group col-md-6">
+								<legend>Courriel</legend>
+								<input required type="text" class="form-control" name="courriel_animateur" placeholder="Courriel" value="">
+								<!--manque input et small avec php... voir exemple en haut-->
+							</div>
+						</div>
+
+						<div class="form-row">	
+							<div class="form-group col-md-6">
+								<input type="submit" name="eliminer_fiche_animateur" value="Éliminer" class="btn btn-secondary btn-lg btn-block btn__admin btn__admin--eliminer">
+							</div>
+							<div class="form-group col-md-6">
+								<input type="submit" name="enregistrer_fiche" value="Ajouter" class="btn btn-secondary btn-lg btn-block btn__admin btn__admin--publier">
+							</div>
+						</div>
+						<p><span class="span__admin--alerte">Attention</span>, le boutton "éliminer" efface la fiche de la base de données.</p>
+					</form>
+	
+					<p class="p__admin--pieddepage"><a class="p__a__admin--pieddepage" href="#">Aller à la liste des animateurs(trices)</a></p>
+     				
+     				<div class="col-lg-1"></div>
+				</div>
+        	</main>
+		</div>
+	</div>	        
+
+<!--js Bootstrap-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>
