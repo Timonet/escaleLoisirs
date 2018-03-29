@@ -1,86 +1,56 @@
-<!doctype html>
-<html lang="fr">
-<!--Projet web 1
-	Site web Centre Communautaire / escaleLoisirs
-	Page gestion pour animateurs-->
+			<!--colonnes laterales poru centrer contenu-->
+			<div class="col-lg-1"></div>
 
-<head>
-  <meta charset="utf-8">
-  <title>escaleLoisirs / Animateurs</title>
-  <meta name="author" content="Sara Potau">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <link rel="stylesheet" href="../css/shop-homepage.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet">
-</head>
-
-<body>
-	<div class="container-fluid">
-		<main >
-			<div class="row">		
-				<div class="col-lg-3">				
-					<a href="#"><img class="card-img-top logo" src="../medias/logos/logo_escaleLoisirs.svg" alt="logo"></a>
-				</div>
-				<div class="col-lg-9">	
-					<h1 class="jumbotron jumbotron__admin">Espace animateurs(trices)</h1>
-				</div>
-			</div>
-				
-			<!-- contenu principal page-->
-			<div class="row row_main__admin">
-				<!--colonnes laterales poru centrer contenu-->
-				<div class="col-lg-1"></div>
-
-				<div class="col-lg-10">					
-					<h2 class= "jumbotron jumbotron__h2__admin">Vos activités pour la session</h2>
-					<!-- fiche activité + liste participants par activite-->
-					<div class="row row__admin--fondsgris">
-						<div class="col-lg-5">
-							<h3 class="h3__admin--etroit">Fiche activité</h3>
-							<table class="table table-md">
-							<tr>
-								<th scope="col">Titre</th>
-								<td>Titre activité (php)</td>
-							</tr>
-							<tr>
-								<th scope="col">Dates</th>
-								<td>Dates activité (php)</td>
-							</tr>
-							<tr>
-								<th scope="col">Salle</th>
-								<td>Salle (php)</td>
-							</tr>
-							</table>
-						</div>
-						<div class="col-lg-7">
-							<!--liste participats / permet indiquer payement mais pas voir leurs coordonnées-->
-							<h3 class="h3__admin--etroit">Liste des participants</h3>
-							<table class="table table-sm">
-								<thead class="thead__admin--minimal">
-									<tr>
-										<th scope="col">Nom</th>
-										<th scope="col">Prénom</th>
-										<th scope="col">Courriel</th>
-										<th scope="col">Effacer</th>
-									</tr>
-								</thead>
-								<tbody class="tbody__admin--minimal">
-									<tr>
-										<td>$bdd / Nom</td>
-										<td>$bdd / Prénom</td>
-										<td>$bdd / Courriel</td>
-										<td>Effacer</td> <!--lien-->
-									</tr>
-								</tbody>
-							</table>
-						</div>
+			<div class="col-lg-10">					
+				<h2 class= "jumbotron jumbotron__h2__admin">Vos activités pour la session</h2>
+				<!-- fiche activité + liste participants par activite-->
+				<div class="row row__admin--fondsgris">
+					<div class="col-lg-5">
+						<h3 class="h3__admin--etroit">Fiche activité</h3>
+						<table class="table table-md">
+						<tr>
+							<th scope="col">Titre</th>
+							<td>Titre activité (php)</td>
+						</tr>
+						<tr>
+							<th scope="col">Dates</th>
+							<td>Dates activité (php)</td>
+						</tr>
+						<tr>
+							<th scope="col">Salle</th>
+							<td>Salle (php)</td>
+						</tr>
+						</table>
+					</div>
+					<div class="col-lg-7">
+						<!--liste participats / permet indiquer payement mais pas voir leurs coordonnées-->
+						<h3 class="h3__admin--etroit">Liste des participants</h3>
+						<table class="table table-sm">
+							<thead class="thead__admin--minimal">
+								<tr>
+									<th scope="col">Nom</th>
+									<th scope="col">Prénom</th>
+									<th scope="col">Courriel</th>
+									<th scope="col">Effacer</th>
+								</tr>
+							</thead>
+							<tbody class="tbody__admin--minimal">
+								<tr>
+									<td>$bdd / Nom</td>
+									<td>$bdd / Prénom</td>
+									<td>$bdd / Courriel</td>
+									<td>Effacer</td> <!--lien-->
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
-				<div class="col-lg-1"></div>
 			</div>
-		</main>
-	</div>	    
+			
+			<div class="col-lg-1"></div>
+		</div>
+	</main>
+</div>	    
 
 <!--js Bootstrap-->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

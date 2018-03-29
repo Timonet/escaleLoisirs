@@ -114,6 +114,10 @@ div .list-group a:hover {
     z-index: 1;
 }
 
+.list-group_menu_admin {
+    margin: 2rem 2rem 0;
+}
+
 /* hover Menu Activités */
 @-webkit-keyframes fill {
     0% {
@@ -816,3 +820,10 @@ toutes infos centrées*/
     margin: 1rem;
 }
 
+/* ---------------------- VARIA --------------------*/
+.alert--cachee{
+    color: #FF8224;
+    font-size: 1rem;
+    background-color: transparent;
+    border: none;
+}
