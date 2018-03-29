@@ -36,3 +36,23 @@ function insererActivite($bdd, $data){
 	$insertion = mysqli_execute($stmt);
 	return $insertion;
 }
+
+
+//Function pour afficher infos activite
+/*Param:
+$bbd : connexion_biblio
+$code_activite : code activite recu via GET*/
+function afficheInfosActivite($bdd, $code_activite){
+
+	$query = 'SELECT * FROM activites 
+		INNER JOIN categories ON activites.code_categorie_activite = categories.code_categorie 
+		INNER JOIN personnes ON activites.code_personne_activite = personnes.code_personne 
+		WHERE code_activite = ?';
+	$stmt = mysqli_prepare($bdd, $query);
+	mysqli_stmt_bind_param($stmt, 'i', $code_activite);
+	mysqli_execute($stmt);
+
+	$resultat = mysqli_stmt_get_result($stmt);
+
+	return $resultat;
+}
