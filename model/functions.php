@@ -47,7 +47,7 @@ function estIntval($value){
 
 //Pour gerer les messages d'erreur en lien aus inputs du POST
 /*Param:
-$data : tableau returne de validerNouveauMembre avec, par exemple:
+$data : tableau returne de validerNouveauMembre, NouvelleActivite, etc avec, par exemple:
 $data['nom_membre'] = valider($post['nom_membre'])?$post['nom_membre']:false;
 */
 function messagesErreurs($data){
@@ -55,7 +55,7 @@ function messagesErreurs($data){
 	foreach ($data as $key => $value) {
 		if(!$value){
 			switch ($key) {
-				//pour les modifications, pas le nouvelles fiches
+				//fiches membres
 				case 'code_membre':
 					$erreurs['code_membre'] =  'Erreur dans le traitement de la fiche. Réessayez, SVP';
 					break;
@@ -88,7 +88,41 @@ function messagesErreurs($data){
 					break;	
 				case 'motpasse2_membre':
 					$erreurs['motpasse2_membre'] = 'Veuillez vérifier votre mot de passe';
+					break;
+				case 'titre_activite':
+					$erreurs['titre_activite'] = 'Veuillez indiquer le titre de l\'activité';
+					break;
+				case 'animateur':
+					$erreurs['animateur'] = 'Veuillez choisir un nom de la liste';
+					break;	
+				case 'categorie':
+					$erreurs['categorie'] = 'Veuillez choisir une catégorie de la liste';
+					break;	
+				case 'salle':
+					$erreurs['salle'] = 'Veuillez une salle';
+					break;
+				case 'description':
+					$erreurs['description'] = 'Veuillez inclure une courte description';
+					break;
+				case 'nb_places':
+					$erreurs['categorie'] = 'Veuillez indiquer le maximum de participants, juste des chiffes';
+					break;
+				case 'prix':
+					$erreurs['prix'] = 'Veuillez indiquer le prix, juste des chiffres';
+					break;
+				case 'date_debut':
+					$erreurs['date_debut'] = 'Veuillez choisir une date sur le calendrier';
 					break;		
+				case 'date_fin':
+					$erreurs['date_fin'] = 'Veuillez choisir une date sur le calendrier';
+					break;	
+
+				case 'courriel_membre_login':
+					$erreurs['courriel_membre_login'] = 'Veuillez indiquer votre courriel';
+					break;	
+				case 'motpasse_membre_login':
+					$erreurs['motpasse_membre_login'] = 'Veuillez choisir votre mot de passe';
+					break;				
 			}
 		}
 	}
@@ -98,28 +132,23 @@ function messagesErreurs($data){
 
 //Pour afficher les champs deroulants des <form>
 /*
-$type = editeur / auteur / genre
+$type = animateur / categorie
 $bdd = connexion a la BDD
-$bouton = du formulaire
+$submit = du formulaire
 $post = code (type) du post
 $ get = code (type) du get
 */
-function getSelect($bdd, $bouton, $post, $get, $type){
+function getSelect($bdd, $submit, $post, $get, $type){
 	switch ($type){
-		case 'editeur':
-			$input_name = 'editeur';
-			$query = "SELECT code_editeur as code, nom_editeur as nom from editeurs order by nom ASC";
-			$default_option ='Selectionnez un editeur';
+		case 'animateur':
+			$input_name = 'animateur';
+			$query = "SELECT code_personne AS code, CONCAT_WS (' ', nom_personne, prenom_personne) AS nom from personnes WHERE code_role_personne = 2 order by nom ASC";
+			$default_option ='Selectionnez un animateur';
 			break;
-		case 'auteur':
-			$input_name = 'auteur';
-			$query = "SELECT code_auteur as code, CONCAT (nom_auteur, ', ', prenom_auteur) as nom from auteurs order by nom ASC";
-			$default_option ='Selectionnez un auteur';
-			break;
-		case 'genre':
-			$input_name = 'genre';
-			$query = "SELECT code_genre as code, nom_genre as nom from genres order by nom ASC";
-			$default_option ='Selectionnez un genre';
+		case 'categorie':
+			$input_name = 'categorie';
+			$query = "SELECT code_categorie AS code, nom_categorie AS nom from categories order by nom ASC";
+			$default_option ='Selectionnez une catégorie';
 			break;
 	}
 
@@ -131,7 +160,7 @@ function getSelect($bdd, $bouton, $post, $get, $type){
 	$resultat = mysqli_stmt_get_result($stmt);
 	//pour garder les infos POST déjà choisies par utilisateur, même si le formulaire ne part pas, à cause d'autres erreurs sur la page
 	while($donnees = mysqli_fetch_assoc($resultat)){
-		if($bouton){
+		if($submit){
 			$selected = ($donnees['code'] == $post)?'SELECTED=SELECTED':'';
 			$string .= '<option value="'.$donnees['code'].'" '.$selected.'>'.$donnees['nom'].'</option>';
 		}else{
@@ -142,6 +171,15 @@ function getSelect($bdd, $bouton, $post, $get, $type){
 	$string .='</select>';
 
 	return $string;
+}
+
+
+function afficheOptionsPaiement($bdd){
+	$query = "SELECT code_paiement, nom_paiement from paiements order by nom_paiement ASC";
+	$stmt = mysqli_prepare($bdd, $query);
+	mysqli_stmt_execute($stmt);
+	$resultat = mysqli_stmt_get_result($stmt);
+	return $resultat;	
 }
 
 
