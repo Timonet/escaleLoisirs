@@ -21,7 +21,6 @@ if($erreur_code){
 //Affichage de fiche auteur et liste livres avec titre clickable
 ?>
 
-
 <!--info activite et inscription -->
 <div class="row select-act">
 
@@ -83,8 +82,11 @@ if($erreur_code){
     <!-- Section abonnement ou authentification pour l'inscription -->
     <section class="col-xl-6 col-sm-12 mb-4 n-inscription">
        
+       <h3>| &nbsp;&nbsp;inscription&nbsp;&nbsp; |</h3>
+
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs" role="tablist">
+        <!--********ne pas changer le id du ul*********!!!--> 
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#nouv-membre">Nouveau Membre</a>
             </li>
@@ -95,25 +97,17 @@ if($erreur_code){
 
         <!-- Tabs contenu -->
         <div class="tab-content card card-body mb-4">
-            <div id="nouv-membre" class="container tab-pane active"><br>                            
-
+            <div id="nouv-membre" class="container tab-pane active"><br>
                 <?php
-                include('pages/creer-profil-paiement.php');
-                ?>                        
-                
+                include('pages/creer-profil.php');
+                ?> 
             </div>
-
             <div id="membre-exist" class="container tab-pane fade"><br>
-                <p>Afin de vous inscrire à une activité du centre, vous devez préalablement vous authentifier.</p><br>
-                
                 <?php
                 include('pages/connexion-membre.php');
-                ?>    
+                ?>
 
-                TEST
-                
            </div>
-
         </div>
     </section>
 </div>
@@ -123,6 +117,20 @@ if($erreur_code){
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+    //modifie le comportement des tab         
+    $(document).ready(function(){
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+</script>
+
 
 <?php
 }
