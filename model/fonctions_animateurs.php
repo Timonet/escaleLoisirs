@@ -66,23 +66,33 @@ $data : input du POST validé
 */
 function modifAnimateur($bdd, $data){
 
-	$query = "UPDATE personnes SET nom_personne=?, prenom_personne=?, mot_passe_personne=?, numero_adresse_personne=?, rue_adresse_personne=?, ville_adresse_personne=?, code_postal_adresse_personne=?, courriel_personne=?, telephone_personne=? WHERE code_personne=?";
+	$query = "UPDATE personnes SET nom_personne=?, prenom_personne=?, mot_passe_personne=?, numero_adresse_personne=?, rue_adresse_personne=?, ville_adresse_personne=?, code_postal_adresse_personne=?, courriel_personne=?, telephone_personne=?*/ WHERE code_personne=?";
 	$stmt = mysqli_prepare($bdd, $query);
-	mysqli_stmt_bind_param($stmt, 'ssssssssi', $data['nom_personne'], $data['prenom_personne'], $data['mot_passe_personne'], $data['numero_adresse_personne'], $data['rue_adresse_personne'], $data['ville_adresse_personne'], $data['code_personne'], $data['courriel_personne'], $data['telephone_personne']);
+	mysqli_stmt_bind_param($stmt, 'sssssssssi', $data['prenom_personne'], $data['mot_passe_personne'], $data['numero_adresse_personne'], $data['rue_adresse_personne'], $data['ville_adresse_personne'], $data['code_postal_personne'], $data['courriel_personne'], $data['telephone_personne'], $data['code_personne']);
 	$insertion = mysqli_execute($stmt);
 
 	return $insertion;
 }
 
-//Function pour inserer nouvel animateur BDD, date d'achat suit
+//Function pour inserer nouvel animateur BDD
 /*Param:
 $bbd : connexion_escaleLoisirs
 $data : input du POST*/
 function insererAnimateur($bdd, $data){
-	$code_role = 2;
-	$query = "INSERT INTO personnes(nom_personne, prenom_personne, mot_passe_personne, numero_adresse_personne, rue_adresse_personne, ville_adresse_personne, code_postal_adresse_personne, courriel_personne, telephone_personne, code_role_personne) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	$code_role_personne = 2;
+	$query = "INSERT INTO personnes(mot_passe_personne, nom_personne, prenom_personne, numero_adresse_personne, rue_adresse_personne, ville_adresse_personne, code_postal_adresse_personne, courriel_personne, telephone_personne, code_role_personne) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	$stmt = mysqli_prepare($bdd, $query);
-	mysqli_stmt_bind_param($stmt, 'sssssssssi', $data['nom_personne'], $data['prenom_personne'], $data['mot_passe_personne'], $data['numero_adresse_personne'], $data['rue_adresse_personne'], $data['ville_adresse_personne'], $data['code_personne'], $data['courriel_personne'], $data['telephone_personne'], $code_role);
+	mysqli_stmt_bind_param($stmt, 'sssssssssi',
+		$data['mot_passe_personne'], 
+		$data['nom_personne'], 
+		$data['prenom_personne'], 
+		$data['numero_adresse_personne'], 
+		$data['rue_adresse_personne'], 
+		$data['ville_adresse_personne'], 
+		$data['code_postal_adresse_personne'], 
+		$data['courriel_personne'], 
+		$data['telephone_personne'], 
+		$code_role_personne);
 	$insertion = mysqli_execute($stmt);
 	//return $insertion;
 
@@ -102,3 +112,20 @@ function insererAnimateur($bdd, $data){
 	$insertion = mysqli_execute($stmt);
 	return $insertion;
 }*/
+
+/*
+function supprimerPersonne($bdd, $data){
+	$query = "DELETE from personnes WHERE code_personne = ?;"
+	$stmt = mysqli_prepare($bdd, $query);
+	mysqli_stmt_bind_param($stmt, 'i'), 
+		$data['code_personne'], 
+	$supprime = mysqli_execute($stmt);
+	//return $supprime;
+
+	if($supprime){
+		return true;
+	}else{
+		return false;
+	}
+}
+*/
