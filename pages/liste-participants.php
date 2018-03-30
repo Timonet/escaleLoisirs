@@ -1,15 +1,15 @@
 <?php
-
+var_dump($_GET);
 //On recoit GET info pour ordonner colonnes
-$afficherPar = (isset($_GET['ordonne_par']))  ? $_GET['ordonne_par'] : 'Code';
+$afficherPar = (isset($_GET['ordonne_par']))  ? $_GET['ordonne_par'] : 'Nom';
 $ascOuDesc = (isset($_GET['direction']))  ? $_GET['direction'] : 'ASC';
+
 
 $orderInfos = afficherAscDesc($afficherPar, $ascOuDesc);
 
-$membres = afficheListeMembres($bdd, $orderInfos['ordreType'], $orderInfos['direction']);
+$inscrits = afficheListeInscrits($bdd, $orderInfos['ordreType'], $orderInfos['direction'], $_GET['code_activite']);
 
 ?>
-
 
 <div class="row row_main__admin">
 	
@@ -17,16 +17,16 @@ $membres = afficheListeMembres($bdd, $orderInfos['ordreType'], $orderInfos['dire
 	<div class="col-lg-1"></div>
 
 	<div class="col-lg-10">
-		<h2 class= "jumbotron jumbotron__h2__admin">Liste des membres enregistrés</h2>
+		<h2 class= "jumbotron jumbotron__h2__admin">Liste participants: (nom activité clickable - PHP)</h2>
 
 		<!--champ de recherche-->
-		<h3 class="h3__admin--etroit">Rechercher un membre</h3>
+		<h3 class="h3__admin--etroit">Rechercher un participant sur la liste</h3>
 		<form class="form-inline form-inline__admin">
-		  <input type="text" class="form-control mb-2 mr-sm-2" name="recherche" placeholder="Votre recherche ici">
+		  <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Votre recherche ici">
 		  <button type="submit" name="btn-rechercher" class="btn btn-secondary btn__admin--rechercher mb-2">Rechercher</button>
 		</form>
 
-		<!--liste membres-->
+		<!--liste participats-->
 		<table class="table table-hover table-sm">
 			<thead class="thead thead__admin--jaune">
 				<tr>
@@ -34,24 +34,24 @@ $membres = afficheListeMembres($bdd, $orderInfos['ordreType'], $orderInfos['dire
 
 					<th scope="col"><a href="?action=liste-membres&ordonne_par=prenom&direction=<?php echo $orderInfos['ordrePrenom']?>">Prénom</a></th>
 
-					<th scope="col"><a href="?action=liste-membres&ordonne_par=adresse&direction=<?php echo $orderInfos['ordreAdresse']?>">Adresse</a></th>
-
 					<th scope="col"><a href="?action=liste-membres&ordonne_par=tel&direction=<?php echo $orderInfos['ordreTel']?>">Téléphone</a></th>
 
 					<th scope="col"><a href="?action=liste-membres&ordonne_par=courriel&direction=<?php echo $orderInfos['ordreCourriel']?>">Courriel</a></th>
+
+					<th scope="col">Payé</th>
 
 					<th scope="col">Supprimer membre</th>
 				</tr>
 			</thead>
 			<tbody class="tbody__admin">
 				<?php
-				while($donnees = mysqli_fetch_assoc($membres)){
+				while($donnees = mysqli_fetch_assoc($inscrits)){
 					echo '<tr>
 						<td>'.$donnees['Nom'].'</td>
 						<td>'.$donnees['Prenom'].'</td>
-						<td>'.$donnees['Adresse'].'</td>
 						<td>'.$donnees['Telephone'].'</td>
 						<td>'.$donnees['Courriel'].'</td>
+						<td>Payé</td>
 						<td>Supprimer</td>
 					</tr>';
 				}
