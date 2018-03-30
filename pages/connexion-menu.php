@@ -1,40 +1,28 @@
 <?php 
 
-if(isset($_POST['btn_login_menu'])){
-    echo 'hello';
-    //  Récupération id_personne et mot de passe
+$error3=[];
+$envoyer_form3 = false;
 
+//Vérification inputs utilisateur
+if(isset($_POST['btn_login_menu'])){
+
+    //  Récupération id_personne et mot de passe
     // Dans une 2e etape: mp HACHE
     // $pass_hache = password_hash($_POST['pass'], PASSWORD_DEFAULT);
-
-    $query = 'SELECT code_personne, mot_passe_personne FROM personnes WHERE courriel_personne = ?';
-    $stmt = mysqli_prepare($bdd, $query);
-    mysqli_stmt_bind_param($stmt, 's', $courriel);
-    mysqli_execute($stmt);
-    $resultat = mysqli_stmt_get_result($stmt);
-    $donnees = mysqli_fetch_assoc($resultat);
-
-
-    // Comparaison du m.p. envoyé via le formulaire avec la bdd et connexion
-
-    // Dans une 2e etape, mp hache
-    // $isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
-
-    if (!$donnees){
-        echo 'Mauvais identifiant ou mot de passe !';
-    }else{
-        if ($donnees['mot_passe_personne']==$_POST['motpasse_connex']) {
-           // session_start();
-          //  $_SESSION['id'] = $donnees['id'];
-           // $_SESSION['courriel'] = $donnees['courriel_personne'];
-            echo 'Vous êtes connecté !';
-        }
-        else {
-            echo 'Mauvais identifiant ou mot de passe !';
-        }
+    $data = validerConnexion($_POST);
+    if(in_array(false, $data)){
+        $error3 = messagesErreurs($data);
     }
-}else{
-    ?>
+    //Envoi ou pas des données
+    if (!$error3){
+        $envoyer_form3= true;
+    }
+}
+
+if(!$envoyer_form3){
+    //$error3 dans le corps du formulaire
+?>
+<!-- section d'authentification -->
     <div class="modal-dialog modal-dialog-centered">
 
         <div class="modal-content">
@@ -70,6 +58,45 @@ if(isset($_POST['btn_login_menu'])){
 
         </div>
     </div>
+
+    <script type="text/javascript">
+    //modifie le comportement des tab         
+    $(document).ready(function(){
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+            localStorage.setItem('activeTab', $(e.target).attr('href'));
+        });
+        var activeTab = localStorage.getItem('activeTab');
+        if(activeTab){
+            $('#myTab a[href="' + activeTab + '"]').tab('show');
+        }
+    });
+</script>
 <?php
-}
+}else{    
+    // Comparaison du m.p. envoyé via le formulaire avec la bdd et connexion
+    // Dans une 2e etape, mp hache
+    // $isPasswordCorrect = password_verify($_POST['pass'], $resultat['pass']);
+            /*if ($donnees['mot_passe_personne']==$_POST['motpasse_connex']) {
+            session_start();
+            $_SESSION['id'] = $donnees['id'];
+            $_SESSION['courriel'] = $donnees['courriel_personne'];
+            echo 'Vous êtes connecté !';
+        }*/
+    $pourComparer = getDonneesConnexion($bdd, $data);
+  
+    if($pourComparer){
+       if (($pourComparer['courriel_personne'] == $data['courriel_membre_login']) && ($pourComparer['mot_passe_personne'] == $data['motpasse_membre_login'])){
+            header('Location: ?action=profil-membre&code_membre='.$pourComparer['code_personne'].'');
+            exit;
+//**********faut faire code pour admin/anim/membre**************      
+        }
+    }else{
+        echo 'Mauvais identifiant ou mot de passe !';
+    }
+}   
+
+//https://stackoverflow.com/questions/16154216/twitter-bootstrap-modal-form-submit
+//https://codepen.io/hanapiers/pen/EXNrGP
+//http://www.superglobals.net/submit-form-bootstrap-modal/
+
 ?>

@@ -1,64 +1,62 @@
 <?php
 
-$error=[];
-$envoyer_form2 = false;
+$error3=[];
+$envoyer_form3 = false;
 
 //Vérification inputs utilisateur
 if(isset($_POST['btn_login_membre'])){
 
     $data = validerConnexion($_POST);
     if(in_array(false, $data)){
-        $error = messagesErreurs($data);
+        $error3 = messagesErreurs($data);
     }
 
     //Envoi ou pas des données
-    if (!$error){
-        $envoyer_form2 = true;
+    if (!$error3){
+        $envoyer_form3= true;
     }
-    echo 'PRETEST';
 }
 
-if(!$envoyer_form2){
-    //les erreurs dans le corps du formulaire
-    echo 'PRETEST2';
+if(!$envoyer_form3){
+    //$error3 dans le corps du formulaire
 ?>
 <!-- section d'authentification -->
+<p>Afin de vous inscrire à une activité du centre, vous devez préalablement vous authentifier.</p><br>
+
 <form method="post" action="">
+    <h5>| &nbsp;&nbsp;authentification&nbsp;&nbsp; |</h5><br>
+    
     <div class="form-group">
-        <input type="email" class="form-control" name="courriel_membre" placeholder="Courriel">
+        <input type="email" class="form-control" name="courriel_membre_login" placeholder="Courriel" value="">
+        <small class="alert alert--cachee"><?php echo (!empty($error3['courriel_membre_login'])) ? $error3['courriel_membre_login'] : ''; ?></small>
     </div>
     <div class="form-group">
-        <input type="password" id="pwd" class="form-control" name="motpasse_membre" placeholder="Mot de passe">
+        <input type="password" class="form-control" name="motpasse_membre_login" placeholder="Mot de passe" value="">
+            <small class="alert alert--cachee"><?php echo (!empty($error3['motpasse_membre_login'])) ? $error3['motpasse_membre_login'] : ''; ?></small>
     </div>
+    <!--SPRINT 4
     <div class="form-check">
         <label class="form-check-label">
               <input class="form-check-input" type="checkbox"> Se souvenir de moi
             </label>
-    </div>
+    </div>-->
     <div class="btn-nouv-membre">
-        <input type="submit" class="btn btn-custom btn-block" name="btn_login_membre" value="Accéder à mon compte"> 
+        <input type="submit" name="btn_login_membre" class="btn btn-custom btn-block" value="Accéder à mon compte"> 
     </div>
 </form>
 
-<!-- Bootstrap core JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <?php
-}else{     
-    echo 'YESTEST';
+}else{    
     $pourComparer = getDonneesConnexion($bdd, $data);
-
+  
     if($pourComparer){
-        if (($pourComparer['courriel_membre'] == $_POST['courriel_membre'])
-            && ($pourComparer['motpasse_membre'] == $_POST['motpasse_membre'])){
-            echo 'YES';
-            //include('pages/paiement-activite.php');
-            exit;
+       if (($pourComparer['courriel_personne'] == $data['courriel_membre_login']) && ($pourComparer['mot_passe_personne'] == $data['motpasse_membre_login'])){
+            echo '<h3>Tres important!</h3>
+                <p>Vous devez payer en personne pour confirmer votre inscription.</p>
+                <p><a href="?action=paiement&code_membre='.$pourComparer['code_personne'].'&code-activite='.$_GET['code-activite'].'">Payer</a></p>';            
         }
     }else{
-        echo '<div class="col-md-12 reponse"><p>Mauvais mot de passe ou courriel. Veuillez réessayer.</p></div>';
+        echo 'Mauvais identifiant ou mot de passe !';
     }
-    echo 'TEST2';
 }   
 ?>
