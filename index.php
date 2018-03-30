@@ -2,10 +2,13 @@
 
 include('model/connexion_bdd.php');
 include('model/functions.php');
+include('model/functionsActivites.php');
 include('model/fonctions_animateurs.php');
 include('model/functionsMembres.php');
 include('model/functionsListes.php');
 include('pages/head-commun.html');
+
+
 
 //MVC
 if (isset($_GET['action'])){
@@ -17,7 +20,7 @@ if (isset($_GET['action'])){
         include('pages/page-activite.php');
     }elseif ($_GET['action'] == 'accueil-animateur'){
         include('pages/header_menu_animateur.html'); 
-        include('pages/accueil-animateur.html');
+        include('pages/accueil-animateur.php');
     }elseif ($_GET['action'] == 'accueil-admin'){
         include('pages/header_menu_admin.html'); 
         include('pages/accueil-admin.php');
@@ -27,6 +30,9 @@ if (isset($_GET['action'])){
     }elseif ($_GET['action'] == 'liste-inscrits'){ //liste-participants par activite vue par animateur
         include('pages/header_menu_animateur.html'); 
         include('pages/liste-inscrits.php');
+    }elseif ($_GET['action'] == 'supprime-fiche'){ //supprime ligne/fiche
+        include('pages/header_menu_admin.html'); 
+        include('pages/supprime.php');
     }elseif ($_GET['action'] == 'liste-membres'){
         include('pages/header_menu_admin.html'); 
         include('pages/liste-membres.php');
