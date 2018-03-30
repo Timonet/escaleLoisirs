@@ -6,7 +6,7 @@ $ordreType : GET['ordonne_par'] (code, titre,...)
 $direction : GET['direction'] (asc ou desc)*/
 function afficherAscDesc($ordreType, $direction){
 
-	$ordreCode = $ordreTitre = $ordreCategorie = $ordreAnimateur = $ordrePlaces = $ordrePrix = $ordreDebut = $ordreFin = $ordreNom = $ordrePrenom = $ordreTel = $ordreCourriel = 'ASC';
+	$ordreCode = $ordreTitre = $ordreCategorie = $ordreAnimateur = $ordrePlaces = $ordrePrix = $ordreDebut = $ordreFin = $ordreNom = $ordrePrenom = $ordreAdresse = $ordreTel = $ordreCourriel = $ordrePaye = 'ASC';
 	switch ($ordreType) {
 		case 'code':
 			$ordreType = 'Code';
@@ -48,12 +48,20 @@ function afficherAscDesc($ordreType, $direction){
 			$ordreType = 'Prenom';
 			$ordrePrenom = ($direction == 'ASC') ? 'DESC' : 'ASC';
 			break;
+		case 'adresse':
+			$ordreType = 'Adresse';
+			$ordreCode = ($direction == 'ASC') ? 'DESC' : 'ASC';
+			break;
 		case 'tel':
 			$ordreType = 'Telephone';
 			$ordreTel = ($direction == 'ASC') ? 'DESC' : 'ASC';
 			break;
 		case 'courriel':
 			$ordreType = 'Courriel';
+			$ordreCourriel = ($direction == 'ASC') ? 'DESC' : 'ASC';
+			break;	
+		case 'paye':
+			$ordreType = 'paye';
 			$ordreCourriel = ($direction == 'ASC') ? 'DESC' : 'ASC';
 			break;			
 		default:
@@ -74,8 +82,10 @@ function afficherAscDesc($ordreType, $direction){
 		'ordreFin' => $ordreFin,
 		'ordreNom' => $ordreNom,
 		'ordrePrenom' => $ordrePrenom,
+		'ordreAdresse' => $ordreAdresse,
 		'ordreTel' => $ordreTel,
-		'ordreCourriel' => $ordreCourriel
+		'ordreCourriel' => $ordreCourriel,
+		'ordrePaye' => $ordrePaye
 	);
 
 	return $return;
@@ -98,16 +108,30 @@ function afficheListe($bdd, $ordreType, $direction){
 
 
 // Affichage liste membres
-function listeMembres($bdd, $orderType, $direction){
-	$query = 'SELECT nom_personne AS Nom, prenom_personne AS Prenom, courriel_personne AS Courriel, ville_adresse_personne AS Adresse
-	FROM personnes 
-	WHERE code_role = 3
-	ORDER BY '.$orderType.' '.$direction.'';
+function afficheListeMembres($bdd, $ordreType, $direction){
+	$query = 'SELECT code_personne AS Code, nom_personne AS Nom, prenom_personne AS Prenom, ville_adresse_personne AS Adresse, telephone_personne AS Telephone, courriel_personne AS Courriel
+	FROM personnes
+	WHERE code_role_personne = 3
+	ORDER BY '.$ordreType.' '.$direction.'';
 
 	$stmt = mysqli_prepare($bdd, $query);
 	mysqli_stmt_execute($stmt);
 	$result = mysqli_stmt_get_result($stmt);
 	return $result;
+}
+
+//************* ne fonctionne pas - Affichage liste membres inscrits par activités
+function afficheListeInscrits($bdd, $ordreType, $direction, $code_activite){
+	$query = 'SELECT * FROM inscriptions 
+	INNER JOIN personnes ON code_personne_inscription = code_personne
+	INNER JOIN activites ON code_activite_inscription = code_activite
+		WHERE code_activite = ?
+		ORDER BY '.$ordreType.' '.$direction.'';
+	$stmt = mysqli_prepare($bdd, $query);
+	mysqli_stmt_bind_param($stmt, 'i', $code_activite);
+	mysqli_execute($stmt);
+	$resultat = mysqli_stmt_get_result($stmt);
+	return $resultat;
 }
 
 
